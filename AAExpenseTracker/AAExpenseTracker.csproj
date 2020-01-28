@@ -357,6 +357,7 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Alarm.cs" />
     <Compile Include="Models\BudgetContext.cs" />
     <Compile Include="Models\Expense.cs" />
     <Compile Include="Models\ExpenseTag.cs" />

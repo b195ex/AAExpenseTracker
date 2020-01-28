@@ -9,6 +9,7 @@ namespace AAExpenseTracker.Models
     {
         public string UserID { get; set; }
         public string Name { get; set; }
+        public virtual ICollection<Alarm> Alarms { get; set; }
         public virtual ICollection<Expense> Expenses { get; set; }
         public virtual ICollection<FixExpen> FixExpens { get; set; }
         public virtual ICollection<FixIncom> FixIncoms { get; set; }

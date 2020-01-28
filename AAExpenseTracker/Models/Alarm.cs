@@ -5,12 +5,18 @@ using System.Web;
 
 namespace AAExpenseTracker.Models
 {
-    public class Expense
+    public enum AlarmType
+    {
+        Percentage, Amount
+    }
+    public class Alarm
     {
         public int ID { get; set; }
-        public string Concept { get; set; }
+        public AlarmType AlarmType { get; set; }
         public float Amount { get; set; }
-        public DateTime Date { get; set; }
+        public string Message { get; set; }
+        public bool Active { get; set; }
+        public virtual User User { get; set; }
         public virtual ICollection<ExpenseTag> Tags { get; set; }
     }
 }
