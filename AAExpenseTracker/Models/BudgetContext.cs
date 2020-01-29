@@ -8,8 +8,13 @@ namespace AAExpenseTracker.Models
 {
     public class BudgetContext : DbContext
     {
-        public DbSet<User> Users { get; set; }
+        public DbSet<Alarm> Alarms { get; set; }
+        public DbSet<Expense> Expenses { get; set; }
+        public DbSet<ExpenseTag> ExpenseTags { get; set; }
+        public DbSet<FixExpen> FixExpens { get; set; }
         public DbSet<FixIncom> FixIncoms { get; set; }
-
+        public DbSet<Income> Incomes { get; set; }
+        public DbSet<IncomeTag> IncomeTags { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
