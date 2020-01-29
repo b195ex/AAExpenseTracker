@@ -15,7 +15,7 @@
                 You can start immediately by going to our Sign in page.
             </p>
             <p>
-                <a class="btn btn-default" href="Login.aspx">Sign In</a>
+                <a class="btn btn-default" href="~/Login.aspx">Sign In</a>
             </p>
         </div>
         <div class="col-md-6">
