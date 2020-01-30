@@ -4,7 +4,7 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
                 <div class="form-group row">
-                    <label for="<%= ConceptTxt.ClientID %>" class="col-md-2 control-label">Concept:</label>
+                    <label for="<%= ConceptTxt.ClientID %>" class="col-md-2 col-form-label">Concept:</label>
                     <div class="col-md-6">
                         <asp:TextBox ID="ConceptTxt" runat="server" CssClass="form-control form-control-sm" placeholder="Concept" required="true"></asp:TextBox>
                     </div>
@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-2">Amount:</label>
+                    <label class="col-md-2 col-form-label">Amount:</label>
                     <div class="col-md-6">
                         <asp:TextBox ID="AmntTxt" runat="server" CssClass="form-control form-control-sm" required="true" placeholder="0.00"></asp:TextBox>
                     </div>

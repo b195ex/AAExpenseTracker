@@ -22,13 +22,13 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-2 col-form-label-sm">Date:</label>
+                    <label class="col-md-2 col-form-label-sm" for="<%=DateTxt.ClientID %>">Date:</label>
                     <div class="col-md-6">
                         <asp:TextBox ID="DateTxt" runat="server" CssClass="form-control form-control-sm" TextMode="Date" required="true"></asp:TextBox>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-2 col-form-label-sm">Add Tags:</label>
+                    <label class="col-md-2 col-form-label-sm" for="<%=TagTxt.ClientID %>">Add Tags:</label>
                     <div class="col-md-6">
                         <asp:TextBox ID="TagTxt" CssClass="form-control form-control-sm" placeholder="Multiple tags are separated by commas, i.e. Tag1, Tag2, etc" runat="server"></asp:TextBox>
                     </div>
