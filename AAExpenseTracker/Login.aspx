@@ -28,7 +28,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="alert alert-danger alert-dismissable collapse" role="alert" id="LoginException" runat="server">
+        <div class="alert alert-danger alert-dismissible collapse" role="alert" id="LoginException" runat="server">
             <span><asp:Label ID="ErrorLabel" runat="server" Text="Label"></asp:Label></span>
             <button type="button" class="close" data-dissmiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
