@@ -3,8 +3,8 @@
     <asp:Panel ID="AddPanel" GroupingText="Add a new Fixed Income" runat="server">
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <div class="form-group">
-                    <label for="<%= ConceptTxt.ClientID %>" class="col-md-2 control-label">Concept:</label>
+                <div class="form-group row">
+                    <label for="<%= ConceptTxt.ClientID %>" class="col-md-2 col-form-label">Concept:</label>
                     <div class="col-md-6">
                         <asp:TextBox ID="ConceptTxt" runat="server" CssClass="form-control form-control-sm" placeholder="Concept" required="true"></asp:TextBox>
                     </div>
@@ -12,8 +12,8 @@
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*Required Field" ControlToValidate="ConceptTxt" Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-md-2">Amount:</label>
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label" for="<%= AmntTxt.ClientID %>">Amount:</label>
                     <div class="col-md-6">
                         <asp:TextBox ID="AmntTxt" runat="server" CssClass="form-control form-control-sm" required="true" placeholder="0.00"></asp:TextBox>
                     </div>
@@ -26,8 +26,8 @@
                 <asp:AsyncPostBackTrigger ControlID="AddBtn" EventName="Click" />
             </Triggers>
         </asp:UpdatePanel>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-6">
+        <div class="form-group row">
+            <div class="offset-md-2 col-md-6">
                 <asp:Button ID="AddBtn" runat="server" Text="Add" CssClass="btn btn-primary" OnClick="AddBtn_Click" />
             </div>
         </div>

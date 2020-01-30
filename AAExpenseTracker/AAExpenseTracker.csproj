@@ -206,6 +206,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="AddAlert.aspx" />
     <Content Include="AddExpense.aspx" />
     <Content Include="AddFixExpense.aspx" />
     <Content Include="AddFixIncome.aspx" />
@@ -354,6 +355,13 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddAlert.aspx.cs">
+      <DependentUpon>AddAlert.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddAlert.aspx.designer.cs">
+      <DependentUpon>AddAlert.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AddExpense.aspx.cs">
       <DependentUpon>AddExpense.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

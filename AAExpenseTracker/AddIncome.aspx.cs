@@ -19,6 +19,13 @@ namespace AAExpenseTracker
                 GridView1.DataBind();
         }
 
+        protected void Grid_PreRender(object sender, EventArgs e)
+        {
+            var grid = (GridView)sender;
+            if (grid.HeaderRow != null)
+                grid.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
+
         protected void AddBtn_Click(object sender, EventArgs e)
         {
             var usr = (User)Session["LoggedInUser"];
