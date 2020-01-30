@@ -40,6 +40,7 @@ namespace AAExpenseTracker
                     }
                     if(ctx.Authenticate(inputEmail.Text, inputPassword.Text))
                     {
+                        ctx.Entry(user).State = System.Data.Entity.EntityState.Detached;
                         Session.Add("LoggedInUser", user);
                         Response.Redirect("~/Dashboard.aspx");
                     }

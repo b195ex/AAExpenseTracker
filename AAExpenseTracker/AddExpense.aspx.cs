@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace AAExpenseTracker
 {
-    public partial class AddIncome : System.Web.UI.Page
+    public partial class AddExpense : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,25 +25,25 @@ namespace AAExpenseTracker
             using (var ctx = new BudgetContext())
             {
                 ctx.Users.Attach(usr);
-                var incom = new Income
+                var exp = new Expense
                 {
                     Amount = float.Parse(AmntTxt.Text),
                     Date = DateTime.Parse(DateTxt.Text),
                     Concept = ConceptTxt.Text,
-                    Tags = new List<IncomeTag>()
+                    Tags = new List<ExpenseTag>()
                 };
                 string[] tags = TagTxt.Text.Split(',');
                 foreach (var item in tags)
                 {
-                    var temp = ctx.IncomeTags.Find(item.Trim());
+                    var temp = ctx.ExpenseTags.Find(item.Trim());
                     if (temp == null)
                     {
-                        temp = new IncomeTag { ID = item.Trim() };
-                        ctx.IncomeTags.Add(temp);
+                        temp = new ExpenseTag { ID = item.Trim() };
+                        ctx.ExpenseTags.Add(temp);
                     }
-                    incom.Tags.Add(temp);
+                    exp.Tags.Add(temp);
                 }
-                usr.Incomes.Add(incom);
+                usr.Expenses.Add(exp);
                 ctx.SaveChanges();
                 ctx.Entry(usr).State = System.Data.Entity.EntityState.Detached;
                 ConceptTxt.Text = "";
@@ -60,7 +60,7 @@ namespace AAExpenseTracker
             using (var ctx = new BudgetContext())
             {
                 ctx.Users.Attach(usr);
-                GridView1.DataSource = usr.Incomes.ToList();
+                GridView1.DataSource = usr.Expenses.ToList();
                 ctx.Entry(usr).State = System.Data.Entity.EntityState.Detached;
             }
         }
@@ -70,8 +70,8 @@ namespace AAExpenseTracker
             int id = (int)e.Keys[0];
             using (var ctx = new BudgetContext())
             {
-                var inc = ctx.Incomes.Find(id);
-                ctx.Incomes.Remove(inc);
+                var exp = ctx.Expenses.Find(id);
+                ctx.Expenses.Remove(exp);
                 ctx.SaveChanges();
             }
             GridView1.DataBind();
