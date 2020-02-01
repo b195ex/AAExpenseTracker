@@ -15,7 +15,7 @@
                 You can start immediately by going to our Sign in page.
             </p>
             <p>
-                <a class="btn btn-default" href="Login.aspx">Sign In</a>
+                <a class="btn btn-primary" href="Login.aspx">Sign In</a>
             </p>
         </div>
         <div class="col-md-6">
@@ -24,7 +24,7 @@
                 The source code can be found in my public GitHub Repo, check it out!.
             </p>
             <p>
-                <a class="btn btn-default" href="https://github.com/b195ex/AAExpenseTracker">Source</a>
+                <a class="btn btn-secondary" href="https://github.com/b195ex/AAExpenseTracker">Source</a>
             </p>
         </div>
         <%-- <div class="col-md-4">
