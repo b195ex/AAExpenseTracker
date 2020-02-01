@@ -15,7 +15,7 @@ namespace AAExpenseTracker
             var usr = (User)Session["LoggedInUser"];
             if (usr == null)
                 Response.Redirect("~/Login.aspx");
-            else
+            else if (!IsPostBack)
                 GridView1.DataBind();
         }
 

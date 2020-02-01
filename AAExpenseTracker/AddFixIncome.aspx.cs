@@ -15,7 +15,7 @@ namespace AAExpenseTracker
             var usr = (User)Session["LoggedInUser"];
             if (usr == null)
                 Response.Redirect("~/Login.aspx");
-            else
+            else if(!IsPostBack)
                 GridView1.DataBind();
         }
 
@@ -76,6 +76,35 @@ namespace AAExpenseTracker
                 GridView1.DataSource = usr.FixIncoms.ToList();
                 ctx.Entry(usr).State = System.Data.Entity.EntityState.Detached;
             }
+        }
+
+        protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            var grid = (GridView)sender;
+            grid.EditIndex = e.NewEditIndex;
+            grid.DataBind();
+        }
+
+        protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            var grid = (GridView)sender;
+            grid.EditIndex = -1;
+            grid.DataBind();
+        }
+
+        protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            int id = (int)e.Keys[0];
+            using (var ctx = new BudgetContext())
+            {
+                var inc = ctx.FixIncoms.Find(id);
+                inc.Amount = float.Parse(e.NewValues["Amount"].ToString());
+                inc.Concept = e.NewValues["Concept"].ToString();
+                ctx.SaveChanges();
+            }
+            var grid = (GridView)sender;
+            grid.EditIndex = -1;
+            grid.DataBind();
         }
     }
 }
