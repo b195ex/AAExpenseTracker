@@ -18,6 +18,7 @@ namespace AAExpenseTracker.Models
         public DbSet<Income> Incomes { get; set; }
         public DbSet<IncomeTag> IncomeTags { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Query> Queries { get; set; }
 
         byte[] MakeSalt()
         {
