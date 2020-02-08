@@ -23,6 +23,7 @@ namespace AAExpenseTracker
             else if (!IsPostBack)
             {
                 Populate_remaining_chart(usr.UserID);
+                Repeater1.DataBind();
             }
         }
 
@@ -38,6 +39,40 @@ namespace AAExpenseTracker
                 {
                     Chart1.Series[0].Points.AddXY(rdr.GetString(0), rdr.GetDouble(1));
                 }
+            }
+        }
+
+        protected void Repeater1_DataBinding(object sender, EventArgs e)
+        {
+            var usr = (User)Session["LoggedInUser"];
+            using (var ctx=new BudgetContext())
+            {
+                ctx.Users.Attach(usr);
+                float bar = 0;
+                float fi = usr.FixIncoms.Sum(x => x.Amount);
+                List<Alarm> triggered = new List<Alarm>();
+                foreach (var item in usr.Alarms)
+                {
+                    if (item.Active)
+                    {
+                        bar = usr.Expenses.Where(x => x.Tags.Contains(item.Tag)).Sum(x => x.Amount);
+                        switch (item.AlarmType)
+                        {
+                            case AlarmType.Percentage:
+                                if (bar >= fi * (item.Amount / 100))
+                                    triggered.Add(item);
+                                break;
+                            case AlarmType.Amount:
+                                if (bar>=item.Amount)
+                                    triggered.Add(item);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+                ctx.Entry(usr).State = System.Data.Entity.EntityState.Detached;
+                Repeater1.DataSource = triggered;
             }
         }
     }

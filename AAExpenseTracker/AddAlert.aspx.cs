@@ -85,6 +85,11 @@ namespace AAExpenseTracker
         protected void AddBtn_Click(object sender, EventArgs e)
         {
             var usr = (User)Session["LoggedInUser"];
+            if (TypeDropDn.SelectedIndex==0)
+            {
+                TypeDropDn.Focus();
+                return;
+            }
             using (var ctx = new BudgetContext())
             {
                 ctx.Users.Attach(usr);
@@ -102,6 +107,7 @@ namespace AAExpenseTracker
             }
             AmntTxt.Text = MsgTxt.Text = "";
             TagDropDn.SelectedIndex = 0;
+            GridView1.DataBind();
         }
 
         protected void GridView1_DataBinding(object sender, EventArgs e)
@@ -110,6 +116,10 @@ namespace AAExpenseTracker
             using (var ctx=new BudgetContext())
             {
                 ctx.Users.Attach(usr);
+                foreach (var item in usr.Alarms)
+                {
+                    ctx.Entry(item).Reference("Tag").Load();
+                }
                 GridView1.DataSource = usr.Alarms.ToList();
                 ctx.Entry(usr).State = System.Data.Entity.EntityState.Detached;
             }
@@ -143,6 +153,26 @@ namespace AAExpenseTracker
                 ctx.SaveChanges();
             }
             GridView1.DataBind();
+        }
+
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            var row = e.Row;
+            if (row.RowType==DataControlRowType.DataRow)
+            {
+                var item = (Alarm)row.DataItem;
+                switch (item.AlarmType)
+                {
+                    case AlarmType.Percentage:
+                        row.Cells[3].Text = string.Format("{0:P}", item.Amount/100);
+                        break;
+                    case AlarmType.Amount:
+                        row.Cells[3].Text = string.Format("{0:C}", item.Amount);
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
 }

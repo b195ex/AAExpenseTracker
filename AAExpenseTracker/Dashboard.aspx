@@ -20,14 +20,14 @@
             </Titles>
         </asp:Chart>
     </div>
-    <%-- <asp:Repeater ID="Repeater1" runat="server">
+    <asp:Repeater ID="Repeater1" runat="server" OnDataBinding="Repeater1_DataBinding">
         <ItemTemplate>
             <div class="alert alert-danger alert-dismissible" role="alert" id="Notification" runat="server">
-            <span><asp:Label ID="ErrorLabel" runat="server" Text="<%#Eval("Message") %>"></asp:Label></span>
+            <span><asp:Label ID="ErrorLabel" runat="server" Text='<%#Eval("Message") %>'></asp:Label></span>
             <button type="button" class="close" data-dissmiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         </ItemTemplate>
-    </asp:Repeater> --%>
+    </asp:Repeater>
 </asp:Content>
