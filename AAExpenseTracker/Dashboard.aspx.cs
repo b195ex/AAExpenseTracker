@@ -45,35 +45,44 @@ namespace AAExpenseTracker
         protected void Repeater1_DataBinding(object sender, EventArgs e)
         {
             var usr = (User)Session["LoggedInUser"];
-            using (var ctx=new BudgetContext())
+            try
             {
-                ctx.Users.Attach(usr);
-                float bar = 0;
-                float fi = usr.FixIncoms.Sum(x => x.Amount);
-                List<Alarm> triggered = new List<Alarm>();
-                foreach (var item in usr.Alarms)
+                using (var ctx = new BudgetContext())
                 {
-                    if (item.Active)
+                    ctx.Users.Attach(usr);
+                    float bar = 0;
+                    float fi = usr.FixIncoms.Sum(x => x.Amount);
+                    List<Alarm> triggered = new List<Alarm>();
+                    foreach (var item in usr.Alarms)
                     {
-                        bar = usr.Expenses.Where(x => x.Tags.Contains(item.Tag)).Sum(x => x.Amount);
-                        switch (item.AlarmType)
+                        if (item.Active)
                         {
-                            case AlarmType.Percentage:
-                                if (bar >= fi * (item.Amount / 100))
-                                    triggered.Add(item);
-                                break;
-                            case AlarmType.Amount:
-                                if (bar>=item.Amount)
-                                    triggered.Add(item);
-                                break;
-                            default:
-                                break;
+                            bar = usr.Expenses.Where(x => x.Tags.Contains(item.Tag)).Sum(x => x.Amount);
+                            switch (item.AlarmType)
+                            {
+                                case AlarmType.Percentage:
+                                    if (bar >= fi * (item.Amount / 100))
+                                        triggered.Add(item);
+                                    break;
+                                case AlarmType.Amount:
+                                    if (bar >= item.Amount)
+                                        triggered.Add(item);
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
                     }
+                    ctx.Entry(usr).State = System.Data.Entity.EntityState.Detached;
+                    Repeater1.DataSource = triggered;
                 }
-                ctx.Entry(usr).State = System.Data.Entity.EntityState.Detached;
-                Repeater1.DataSource = triggered;
             }
+            catch (Exception)
+            {
+
+                return;
+            }
+            
         }
     }
 }

@@ -58,8 +58,8 @@
                         <div class="dropdown-menu" aria-labelledby="IncomeDropdown">
                             <a class="dropdown-item" href="AddFixIncome.aspx">Fixed Incomes</a>
                             <a class="dropdown-item" href="AddIncome.aspx">Other Incomes</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <%--<div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>--%>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -69,9 +69,12 @@
                         <div class="dropdown-menu" aria-labelledby="ExpenseDropdown">
                             <a class="dropdown-item" href="AddFixExpense.aspx">Fixed Expenses</a>
                             <a class="dropdown-item" href="AddExpense.aspx">Other Expenses</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <%-- %><div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>--%>
                         </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="AddAlert.aspx">Alert Management</a>
                     </li>
                 </ul>
             </div>
