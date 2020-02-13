@@ -29,17 +29,26 @@ namespace AAExpenseTracker
 
         protected void Populate_remaining_chart(string UserID)
         {
-            using (var ctx = new BudgetContext())
+            try
             {
-                ctx.Database.Connection.Open();
-                SqlCommand cmd = new SqlCommand(ctx.Queries.Find(1).Statement, (SqlConnection)ctx.Database.Connection);
-                cmd.Parameters.AddWithValue("User", UserID);
-                SqlDataReader rdr = cmd.ExecuteReader();
-                while (rdr.Read())
+                using (var ctx = new BudgetContext())
                 {
-                    Chart1.Series[0].Points.AddXY(rdr.GetString(0), rdr.GetDouble(1));
+                    ctx.Database.Connection.Open();
+                    SqlCommand cmd = new SqlCommand(ctx.Queries.Find(1).Statement, (SqlConnection)ctx.Database.Connection);
+                    cmd.Parameters.AddWithValue("User", UserID);
+                    SqlDataReader rdr = cmd.ExecuteReader();
+                    while (rdr.Read())
+                    {
+                        Chart1.Series[0].Points.AddXY(rdr.GetString(0), rdr.GetDouble(1));
+                    }
                 }
             }
+            catch (Exception)
+            {
+
+                return;
+            }
+            
         }
 
         protected void Repeater1_DataBinding(object sender, EventArgs e)

@@ -205,6 +205,7 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\TextFile1.txt" />
     <Content Include="Login.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -229,9 +230,9 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
+    <None Include="Properties\PublishProfiles\AAExpenseTracker - Debug.pubxml" />
     <None Include="Properties\PublishProfiles\AAExpenseTracker20200208092302 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\AAExpenseTracker20200208094017 - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\AAExpenseTracker20200208102833 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
